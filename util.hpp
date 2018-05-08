@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <vector>
 #include <cassert>
+#include <iostream>
 
 using key_type = std::tuple<double, double, int, int>;
 
@@ -36,7 +37,7 @@ algT(const index_container& input_left, const index_container& output_right,
                 {
                     assert(j->second.c < parents.size());
                     assert(j->second.p < parents.size());
-                    parents[k->second.c] = k->second.p;
+                    parents[j->second.c] = j->second.p;
                     ++j;
                 }
             double right = 1.0;
@@ -48,6 +49,8 @@ algT(const index_container& input_left, const index_container& output_right,
                 {
                     right = std::min(right, k->second.r);
                 }
+            //for(auto p : parents){std::cout<<p<<' ';}
+            //std::cout<<'\n';
             x = right;
         }
 }

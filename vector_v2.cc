@@ -4,6 +4,7 @@
 #include <tuple>
 #include <random>
 #include <cstdlib>
+#include <iostream>
 #include "util.hpp"
 
 using namespace std;
@@ -94,6 +95,8 @@ algorithmT(const vector<edge>& edges, const std::vector<std::size_t>& I,
                 {
                     right = std::min(right, edges[O[k]].r);
                 }
+			//for(auto & p : pi){std::cout << p << ' ';}
+			//std::cout << '\n';
             x = right;
         }
 }
