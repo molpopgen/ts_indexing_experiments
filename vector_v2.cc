@@ -117,10 +117,14 @@ main(int argc, char** argv)
             for (int ind = 0; ind < N; ++ind)
                 {
                     auto p1 = u(mt);
+                    auto p2 = u(mt);
                     auto brk = pos(mt);
-                    edges.emplace_back(edge{p1, next_node++, 0, brk});
-                    p1 = u(mt);
-                    edges.emplace_back(edge{p1, next_node++, brk, 1.0});
+                    edges.emplace_back(edge{p1, next_node, 0, brk});
+                    edges.emplace_back(edge{p2, next_node, brk,1.0});
+					next_node++;
+                    edges.emplace_back(edge{p2, next_node, 0., brk});
+                    edges.emplace_back(edge{p1, next_node, brk, 1.});
+					next_node++;
                     node_times.push_back(gen);
                     node_times.push_back(gen);
                 }

@@ -27,18 +27,30 @@ main(int argc, char** argv)
             for (int ind = 0; ind < N; ++ind)
                 {
                     auto p1 = u(mt);
+                    auto p2 = u(mt);
                     auto brk = pos(mt);
                     input_left.emplace_back(
                         std::make_tuple(0., -double(gen), p1, next_node),
                         edge{ p1, next_node, 0., brk });
+                    input_left.emplace_back(
+                        std::make_tuple(brk, -double(gen), p2, next_node),
+                        edge{ p2, next_node, brk, 1. });
                     output_right.emplace_back(
                         std::make_tuple(brk, double(gen), p1, next_node),
                         edge{ p1, next_node, 0., brk });
-                    p1 = u(mt);
+                    output_right.emplace_back(
+                        std::make_tuple(1., double(gen), p2, next_node),
+                        edge{ p2, next_node, brk, 1. });
                     ++next_node;
+                    input_left.emplace_back(
+                        std::make_tuple(0., -double(gen), p2, next_node),
+                        edge{ p2, next_node, 0., brk });
                     input_left.emplace_back(
                         std::make_tuple(brk, -double(gen), p1, next_node),
                         edge{ p1, next_node, brk, 1. });
+                    output_right.emplace_back(
+                        std::make_tuple(brk, double(gen), p2, next_node),
+                        edge{ p2, next_node, 0., brk });
                     output_right.emplace_back(
                         std::make_tuple(1., double(gen), p1, next_node),
                         edge{ p1, next_node, brk, 1. });

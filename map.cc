@@ -23,30 +23,38 @@ main(int argc, char** argv)
         {
             uniform_int_distribution<> u(next_node - 2 * N, next_node);
             for (int ind = 0; ind < N; ++ind)
-                {
-                    auto p1 = u(mt);
+			{
+			    auto p1 = u(mt);
+                    auto p2 = u(mt);
                     auto brk = pos(mt);
-                    input_left.emplace(std::make_tuple(0., -double(gen),
-                                                       next_node - 2 * N,
-                                                       next_node),
-                                       edge{ p1, next_node, 0., brk });
-                    output_right.emplace(std::make_tuple(brk, double(gen),
-                                                         next_node - 2 * N,
-                                                         next_node),
-                                         edge{ p1, next_node, 0., brk });
-
-                    p1 = u(mt);
+                    input_left.emplace(
+                        std::make_tuple(0., -double(gen), p1, next_node),
+                        edge{ p1, next_node, 0., brk });
+                    input_left.emplace(
+                        std::make_tuple(brk, -double(gen), p2, next_node),
+                        edge{ p2, next_node, brk, 1. });
+                    output_right.emplace(
+                        std::make_tuple(brk, double(gen), p1, next_node),
+                        edge{ p1, next_node, 0., brk });
+                    output_right.emplace(
+                        std::make_tuple(1., double(gen), p2, next_node),
+                        edge{ p2, next_node, brk, 1. });
                     ++next_node;
-                    input_left.emplace(std::make_tuple(brk, -double(gen),
-                                                       next_node - 2 * N,
-                                                       next_node),
-                                       edge{ p1, next_node, brk, 1. });
-                    output_right.emplace(std::make_tuple(1, double(gen),
-                                                         next_node - 2 * N,
-                                                         next_node),
-                                         edge{ p1, next_node, brk, 1. });
-					++next_node;
+                    input_left.emplace(
+                        std::make_tuple(0., -double(gen), p2, next_node),
+                        edge{ p2, next_node, 0., brk });
+                    input_left.emplace(
+                        std::make_tuple(brk, -double(gen), p1, next_node),
+                        edge{ p1, next_node, brk, 1. });
+                    output_right.emplace(
+                        std::make_tuple(brk, double(gen), p2, next_node),
+                        edge{ p2, next_node, 0., brk });
+                    output_right.emplace(
+                        std::make_tuple(1., double(gen), p1, next_node),
+                        edge{ p1, next_node, brk, 1. });
+                    ++next_node;
                 }
+                
 			algT(input_left,output_right,next_node);
         }
 }
