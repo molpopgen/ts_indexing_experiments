@@ -68,21 +68,21 @@ for i in vector vector_v2 vector_v3 map avl_test
 do
 /usr/bin/time -f "%e %M" ./$i 1000000 5
 done
-30.59 2385652
-67.09 1172768
-15.36 1621416
-72.27 3799732
-68.60 4424568
+20.34 2385528
+52.67 1172836
+13.73 1621468
+63.81 3799884
+51.11 4424640
 ```
 
 And over one generation:
 
 ```sh
-1.55 393540
-2.96 254656
-0.93 371136
-9.95 768612
-10.05 893788
+1.55 393720
+2.89 254500
+0.91 371180
+9.85 768552
+6.98 893728
 ```
 
 We see that the map takes a ton more memory, and is much less efficient when the total size of the data is smaller.
