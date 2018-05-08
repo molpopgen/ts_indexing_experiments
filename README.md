@@ -64,7 +64,7 @@ node/edge tables, pushing us towards favoring the vector.  If we look at perform
 we get the following:
 
 ```sh
-for i in vector vector_v2 vector_v3 map
+for i in vector vector_v2 vector_v3 map avl_test
 do
 /usr/bin/time -f "%e %M" ./$i 1000000 5
 done
@@ -72,6 +72,7 @@ done
 67.09 1172768
 15.36 1621416
 72.27 3799732
+68.60 4424568
 ```
 
 And over one generation:
@@ -81,6 +82,7 @@ And over one generation:
 2.96 254656
 0.93 371136
 9.95 768612
+10.05 893788
 ```
 
 We see that the map takes a ton more memory, and is much less efficient when the total size of the data is smaller.
