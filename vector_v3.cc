@@ -70,8 +70,8 @@ algorithmT(const vector<edge>& edges, const simpler_index_type& I,
                 {
                     right = min(right, O[k].first.first);
                 }
-            //for(auto & p : pi){cout << p << ' ';}
-            //cout << '\n';
+            //for(auto & p : pi){cout << p << '\n';}
+			//std::exit(0);
             x = right;
         }
 }
