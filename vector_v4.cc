@@ -5,6 +5,7 @@
 #include <random>
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 #include "util.hpp"
 
 using namespace std;
@@ -100,6 +101,7 @@ main(int argc, char** argv)
 
     int N = atoi(argv[1]);
     int ngens = atoi(argv[2]);
+    bool output = (argc > 3) ? 1 : 0;   
     int next_node = 2 * N;
     vector<edge> edges;
     vector<double> node_times(2 * N, 0);
@@ -129,5 +131,21 @@ main(int argc, char** argv)
             fill_I_O(IO, node_times, edges, last_et_size);
             last_et_size = edges.size();
             algorithmT(edges, IO.first, IO.second, node_times.size(), 1.0);
+        }
+    if (output)
+        {
+            ofstream out("v4out_left.txt");
+            for (auto& i : IO.first)
+                {
+                    out << i.first.first << ' ' << i.first.second << ' '
+                        << i.second.first << ' ' << i.second.second << '\n';
+                }
+            out.close();
+            out.open("v4out_right.txt");
+            for (auto& i : IO.second)
+                {
+                    out << i.first.first << ' ' << i.first.second << ' '
+                        << i.second.first << ' ' << i.second.second << '\n';
+                }
         }
 }
